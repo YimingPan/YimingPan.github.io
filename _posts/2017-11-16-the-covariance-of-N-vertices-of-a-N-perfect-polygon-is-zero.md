@@ -66,7 +66,7 @@ $$
 \end{align}
 $$
 
-So the rest of our proof is plugging the coordinates of the N vertices into equation (1) and (2), doing some mathematical works and showing that they are true. The coordinates of these vertices are easy to get, because in out problem setting we have constrained them to be the N vertices of a **perfect polygon**, which means once we set the coordinates of the first vertex, the coordinates of the rest can be known simply by rotating the first vertex. For the sake of simplicity, we represent the vertices with polar coordinate.
+So the rest of our proof is plugging the coordinates of the N vertices into equation (1) and (2), doing some mathematical works and showing that they are true. The coordinates of these vertices are easy to get, because in our problem setting we have constrained them to be the N vertices of a **perfect polygon**, which means once we set the coordinates of the first vertex, the coordinates of the rest can be known simply by rotating the first vertex. For the sake of simplicity, we represent the vertices with polar coordinate.
 
 Suppose the first vertex $(r_1, \theta_1) = (1, 0)$, the coordinates of all N vertices are as follow:
 
@@ -80,7 +80,7 @@ $$
 \end{align}
 $$
 
-where $\alpha = 2\pi / N​$.
+where $\alpha = 2\pi / N$.
 
 Plugging them into equation (1) and (2), we get
 
@@ -90,7 +90,8 @@ $$
 & = \sum_{k=0}^{N-1} cos 2k \alpha \\
 & = \sum_{k=0}^{N-1} cos \frac{4k\pi}N & (3) \\
 \sum_{i=1}^N (x_i y_i) & = \sum_{k=0}^{N-1} cos(k\alpha) sin(k \alpha) \\
-& = \sum_{k=0}^{N-1} \frac12 sin2k\alpha & (4)
+& = \sum_{k=0}^{N-1} \frac12 sin2k\alpha \\
+& = \sum_{k=0}^{N-1} \frac12 sin \frac{4k\pi}N & (4)
 \end{align}
 $$
 
@@ -100,6 +101,34 @@ $$
 \begin{align}
 \sum_{k=1}^N sinkx & = \frac{cos (x/2) - cos((N+1/2) x)}{2sin(x/2)} & (5) \\
 \sum_{k=0}^N coskx & = \frac12 + \frac{sin((N+1/2)x)}{2sin(x/2)} & (6)
+\end{align}
+$$
+
+Okay, so far, so good? Now let's work on that.
+
+**Prove (3) holds with (6)**
+
+$$
+\begin{align}
+\sum_{i=1}^N (x^2_i - y^2_i) & = \sum_{k=0}^{N-1} cos \frac{4k\pi}N \\
+& = \frac12 + \frac{sin(N-1+\frac12) \frac{4\pi}N}{2sin \frac{2\pi}N} \\
+& = \frac12 + \frac{sin(-\frac{2\pi}N)}{2sin \frac{2\pi}N} \\
+& = \frac12 - \frac12 \\
+& = 0
+\end{align}
+$$
+
+**Prove (4) holds with (5)**
+
+$$
+\begin{align}
+\sum_{i=1}^N (x_i y_i) & = \sum_{k=0}^{N-1} \frac12 sin \frac{4k\pi}N \\
+& = \frac12 sin0 + \sum_{k=1}^{N-1} \frac12 sin \frac{4k\pi}N \\
+& = 0 + \frac12 \sum_{k=1}^{N-1} sin \frac{4k\pi}N \\
+& = \frac12 \cdot \frac{cos \frac{2\pi}N - cos(N-1+\frac12) \frac{4\pi}N}{2sin \frac{2\pi}N} \\
+& = \frac12 \cdot \frac{cos \frac{2\pi}N - cos(4\pi - \frac{2\pi}N)}{2sin \frac{2\pi}N} \\
+& = \frac12 \cdot \frac{cos \frac{2\pi}N - cos\frac{2\pi}N}{2sin \frac{2\pi}N} \\
+& = 0
 \end{align}
 $$
 
