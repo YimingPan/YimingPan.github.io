@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The covariance of any N 2D points which form a perfect polygon is zero
+title: An interesting fact about covariance
 author: Yiming Pan
 category: math
 date: 2017-11-16 12:30:00 -0004
@@ -13,15 +13,25 @@ MathJax.Hub.Config({
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-In this post, I'll prove the following statement:
+I believe you're more or less confused by the title. Indeed, it's not easy to summarize all the stuff I discuss below in the title, which is too short. So first things first, let me explain the title in detail, which is a claim I proved last semester when I was learning course 10-601 - Introduction to Machine Learning.
 
-If $N$ data points in a 2D dimension space is exactly the N vertices of a perfect polygon, their covariance is zero.
+## The story behind it
 
----
+Last semester I took course 10-601 - Introduction to Machine Learning. The instructor was Roni Rosenfeld, a very nice and lovely man. In the first lecture on Bayesian Estimation, when Roni reviewed covariance for us, one student asked:
 
-**Proof**
+How will the covariance of a 2D dataset change if all data points in the set are rotated by a same angle?
 
-Here is the N data points set: $D = \{(x_1, y_1), (x_2, y_2), ... , (x_N, y_N)\}$. $x_i$ and $y_i$ are observations of random variable $X$ and $Y$.
+Its answer is not easily seen. What Roni said that day is he thought it would not change. But this turned out to be incorrect, as can be disproved by an simple experiment. Then in the next lecture, Roni changed his statement and said if all data points form a perfect polygon, their covariance may not change. The motivation of this guess is that a perfect polygon shaped data points are centrosymmetric, and a centrosymmetric dataset usually has zero covariance (in fact I have not find any contradiction yet). Let me rephrase Roni's hypothesis in a slightly more formal way:
+
+The covariance of any N 2D points which are N vertices of a perfect polygon is zero.
+
+This really triggered my interest, and I started to work on it under Roni's guidance. First I loosely verified this claim by generating datasets having this property and calculating their covariance, and it turned out that all covariances are either 0 or a floating number very close to 0, like 1e-17. Good, we were at the right direction. Roni was happy on this and asked for a formal proof. Then I proved it, and **my proof was later attached to his teaching notes!**
+
+## Proof
+
+**Claim:** If $N$ data points in a 2D dimension space is exactly the $N$ vertices of a perfect polygon, their covariance is zero.
+
+**Proof.** Here is the N data points set: $D = \{(x_1, y_1), (x_2, y_2), ... , (x_N, y_N)\}$. $x_i$ and $y_i$ are observations of random variable $X$ and $Y$.
 
 Without loss of generality, We make this data points centered at origin, which means $E(X)=0$ and $E(Y) = 0.$
 
